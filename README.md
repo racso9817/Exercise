@@ -1,6 +1,9 @@
 # Exercise
 Exercise for ioet inc
 
+## How to execute
+
+
 ## Instructions
 We are happy that you are interested in being part of ioet. As part of the recruitment process we would like you to solve a programming exercise to evaluate your skills and later we will schedule a meeting to discuss your solution. It’s important to notice that you can use any programming language you want but you can not use any external library to solve the exercise, however you can add any dependency for testing purposes like JUnit, Mockito, etc. Use of dependencies that come with the standard library of a programming language are allowed (for instance, take a look at the standard Python library: https://docs.python.org/3/library/). Dependencies that require the use of a language package manager to be installed (pip, npm, etc.), are not allowed.
 
@@ -73,6 +76,3 @@ Once you have finished the exercise, please upload the solution to GitHub and se
 We evaluate many aspects, including how well your code is structured, applied pattern designs, testing, and the quality of your solution.
 
 When submitting your exercise, be sure to avoid including compiled files as this could be considered malware. Please include the proper instructions to compile your project in the README file.
-
-
-## How to execute
