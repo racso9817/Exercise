@@ -15,10 +15,12 @@ while True:
     name = input("Enter the name of the employee: ").upper()
     if(val.validateInput(name, var.employee_names)): #if the name is valid
         #\033[1;31m is the color code for red
-        #\033[1;32m is the color code for white
+        #\033[1;32m is the color code for green
         #\033[1;39m is the color code for default
         print("\n \033[1;32m {name} exists\n \033[1;39m".format(name=name))
-        print(func.retrievePaymentInfo(var.info_dict, name))
+        func.retrievePaymentInfo(var.info_dict, name)
+        print("\n \033[1;42m The amount of pay for {name} is: {amount}\033[1;49m".format(name=name, amount=var.employee_payment))
+        var.employee_payment = 0 #resets the amount of pay for the next employee
 
     else:
         print(("\n \033[1;31m {name} is an invalid name. Please try again.\n \033[1;39m".format(name=name)))

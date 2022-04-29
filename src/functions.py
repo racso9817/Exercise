@@ -43,23 +43,17 @@ def employeeDict(list, dict):
 """
 def retrievePaymentInfo(dict, name):
     employeeInfo = dict[name] #returns the information of the employee according to the name
+    #print(employeeInfo)
     for i in range(len(employeeInfo)):
         if i % 2 == 0:
             if (employeeInfo[i] == "MO" or employeeInfo[i] == "TU" or employeeInfo[i] == "WE" or employeeInfo[i] == "TH" or employeeInfo[i] == "FR"):
                 print('weekdays')
                 print(employeeInfo[i], employeeInfo[i+1])
-                for j in range(len(var.weekdays)):
-                    # print(var.weekdays[j]) #debugging
-                    # print(employeeInfo[i+1]) #debugging
-                    if(val.validateTimeRate(var.weekdays[j][0], employeeInfo[i+1])):
-                        print('valid time rate')
-                        var.payment += int(var.weekdays[j+1])
-                        print(var.payment)
+                print(val.validateTimeRate(employeeInfo[i],employeeInfo[i+1]))
+                var.employee_payment += val.validateTimeRate(employeeInfo[i],employeeInfo[i+1])
             elif (employeeInfo[i] == "SA" or employeeInfo[i] == "SU"):
                 print('weekends')
                 print(employeeInfo[i], employeeInfo[i+1])
-                for j in range(len(var.weekends)):
-                    if var.weekends[j][0] == employeeInfo[i+1]:
-                        var.payment += var.weekends[j][1]
-                        print(var.payment)
-
+                print(val.validateTimeRate(employeeInfo[i],employeeInfo[i+1]))
+                var.employee_payment += val.validateTimeRate(employeeInfo[i],employeeInfo[i+1])
+    return var.employee_payment
