@@ -1,4 +1,3 @@
-import datetime
 import variables as var
 import validators as val
 

@@ -1,5 +1,5 @@
-import variables as var #import variables.py file
-import functions as func #import functions.py file
+import functions as func  # import functions.py file
+import variables as var  # import variables.py file
 
 var.lista = func.readFile("src/info.txt")  #read the file and store the lines in a list
 func.employeeDict(var.lista, var.info_dict)  #create a dictionary with the information of the employees

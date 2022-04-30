@@ -1,18 +1,3 @@
-import variables as var
-
-"""
-    Validate input from the user.
-    @param input: The input from the user.
-    @param list: The list of valid inputs.
-    @return: True if the input is valid, False otherwise.
-"""
-def validateInput(input, list):
-    if input in list:
-        return True
-    else:
-        return False
-
-
 """
     Convert time to 24:00 if it is 00:00.
     @param time: The time to be converted.
