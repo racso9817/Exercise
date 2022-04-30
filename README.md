@@ -15,8 +15,8 @@ To execute the program simply run the main.py or execute the command below:
 There are some commented lines with #debugging, which can be uncommented to see the output of different parts of the program.
 
 The solution considered the following situations:
-- The day starts at 00:00 and ends at 23:59
-- 00:00 is converted to 24:00, although 00:00 can be introduced on the info.txt file
+- The day starts at 00:01 and ends at 00:00.
+- 00:00 is converted to 24:00 for comparison purposes, although 00:00 can be introduced on the info.txt file
 - The output are simply the payment of each employee on the info.txt file
 
 ## Instructions
