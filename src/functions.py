@@ -54,7 +54,7 @@ def checkTimeRates(dict, namesList):
             if j % 2 == 0:
                 time1 = info[j+1].split("-")[0]
                 time2 = info[j+1].split("-")[1]
-                val.convertTo24(time2) #convert 00:00 to 24:00
+                time2 = val.convertTo24(time2) #convert 00:00 to 24:00
                 for k in range(len(var.time_rate)):
                     if time1 >= var.time_rate[k][0] and time1 <= var.time_rate[k][1]:
                         if time2 <= var.time_rate[k][1]:

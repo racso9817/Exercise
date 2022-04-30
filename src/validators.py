@@ -5,7 +5,8 @@
 """
 def convertTo24(time):
     if time == '00:00':
-        return '24:00'
+        time = '24:00'
+    return time
 
 
 """
