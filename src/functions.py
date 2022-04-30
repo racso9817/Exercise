@@ -87,9 +87,9 @@ def validateTimeRate(dict, name):
                 for j in range(len(var.time_rate)):
                     if time1 >= var.time_rate[j][0] and time2 <= var.time_rate[j][1]:
                         var.employee_payment += var.payment[j][0] * val.converToHours(time1, time2)
-                        # print(list[i], var.employee_payment, var.payment[j][0], converToHours(time1, time2)) #debugging
+                        # print(list[i], var.employee_payment, var.payment[j][0], val.converToHours(time1, time2)) #debugging
             elif list[i] == 'SA' or list[i] == 'SU':
                 for j in range(len(var.time_rate)):
                     if time1 >= var.time_rate[j][0] and time2 <= var.time_rate[j][1]:
                         var.employee_payment += var.payment[j][1] * val.converToHours(time1, time2)
-                        # print(list[i], var.employee_payment, var.payment[j][1], converToHours(time1, time2)) #debug
+                        # print(list[i], var.employee_payment, var.payment[j][1], val.converToHours(time1, time2)) #debug
