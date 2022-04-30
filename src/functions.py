@@ -40,7 +40,8 @@ def employeeDict(list, dict):
 """
     Read the dictionary from previous function and checks for time rates.
     @param dict: The dictionary to check.
-    @return: The dictionary with the corrected time rates
+    @param namesList: The list of names to check.
+    @return: The dictionary with the updated information of the employees and the updated counter.
 """
 def checkTimeRates(dict, namesList):
     counter = 0
