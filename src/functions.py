@@ -1,3 +1,4 @@
+import datetime
 import variables as var
 import validators as val
 
@@ -35,25 +36,60 @@ def employeeDict(list, dict):
         dict[line[0]] = emptyList
     return dict #returns the dictionary
 
+
 """
-    Retrieve information about payment
+    Read the dictionary from previous function and checks for time rates.
+    @param dict: The dictionary to check.
+    @return: The dictionary with the corrected time rates
+"""
+def checkTimeRates(dict, namesList):
+    counter = 0
+    newDict = {}
+    for i in range(len(namesList)):
+        emptyList = []
+        info = dict[namesList[i]]
+        newDict[namesList[i]] = {}
+        for j in range(len(info)):
+            # print(len(info), 'longitud de info')
+            if j % 2 == 0:
+                time1 = info[j+1].split("-")[0]
+                time2 = info[j+1].split("-")[1]
+                val.convertTo24(time2) #convert 00:00 to 24:00
+                for k in range(len(var.time_rate)):
+                    if time1 >= var.time_rate[k][0] and time1 <= var.time_rate[k][1]:
+                        if time2 <= var.time_rate[k][1]:
+                            emptyList.append(info[j])
+                            emptyList.append(info[j+1])
+                        else:
+                            counter += 1
+                            emptyList.append(info[j])
+                            emptyList.append(time1 + "-" + var.time_rate[k][1])
+                            emptyList.append(info[j])
+                            emptyList.append(var.time_rate[k+1][0] + "-" + time2)
+        newDict[namesList[i]] = emptyList
+                            # print(namesList[i],info[j], time1, var.time_rate[k][0], var.time_rate[k][1])
+    return newDict, counter
+    
+
+"""
+    Calculate the amount to pay to employees.
     @param dict: The dictionary with the information of the employees.
-    @param name: The name of the employee.
-    @return: The information of the payment of the employee.
+    @param: the name of the employee.
+    @return: The amount to pay to employees.
 """
-def retrievePaymentInfo(dict, name):
-    employeeInfo = dict[name] #returns the information of the employee according to the name
-    #print(employeeInfo)
-    for i in range(len(employeeInfo)):
+def validateTimeRate(dict, name):
+    list = dict[name]
+    for i in range(len(list)):
         if i % 2 == 0:
-            if (employeeInfo[i] == "MO" or employeeInfo[i] == "TU" or employeeInfo[i] == "WE" or employeeInfo[i] == "TH" or employeeInfo[i] == "FR"):
-                print('weekdays')
-                print(employeeInfo[i], employeeInfo[i+1])
-                print(val.validateTimeRate(employeeInfo[i],employeeInfo[i+1]))
-                var.employee_payment += val.validateTimeRate(employeeInfo[i],employeeInfo[i+1])
-            elif (employeeInfo[i] == "SA" or employeeInfo[i] == "SU"):
-                print('weekends')
-                print(employeeInfo[i], employeeInfo[i+1])
-                print(val.validateTimeRate(employeeInfo[i],employeeInfo[i+1]))
-                var.employee_payment += val.validateTimeRate(employeeInfo[i],employeeInfo[i+1])
-    return var.employee_payment
+            time1 = list[i+1].split("-")[0]
+            time2 = list[i+1].split("-")[1]
+            if list[i] == 'MO' or list[i] == 'TU' or list[i] == 'WE' or list[i] == 'TH' or list[i] == 'FR':
+                for j in range(len(var.time_rate)):
+                    if time1 >= var.time_rate[j][0] and time2 <= var.time_rate[j][1]:
+                        var.employee_payment += var.payment[j][0] * val.converToHours(time1, time2)
+                        # print(list[i], var.employee_payment, var.payment[j][0], converToHours(time1, time2)) #debugging
+            elif list[i] == 'SA' or list[i] == 'SU':
+                for j in range(len(var.time_rate)):
+                    if time1 >= var.time_rate[j][0] and time2 <= var.time_rate[j][1]:
+                        var.employee_payment += var.payment[j][1] * val.converToHours(time1, time2)
+                        # print(list[i], var.employee_payment, var.payment[j][1], converToHours(time1, time2)) #debug

@@ -1,0 +1,4 @@
+.pytest_cache
+src/__pycache__
+src/tests.py
+src/.pytest_cache

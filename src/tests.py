@@ -13,7 +13,7 @@ minutes2 = convertMinutesToHours(time2.minute)
 
 #print((time2.hour - time1.hour) + minutes2 - minutes1)
 
-print(val.validateTimeRate("MO", "19:00-20:00"))
+# print(val.validateTimeRate("MO", "19:00-20:00"))
 
 # if datetime.strptime('21:00', '%H:%M').time() < datetime.strptime('00:00', '%H:%M').time():
 #     print("true")

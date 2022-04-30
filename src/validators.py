@@ -1,4 +1,3 @@
-from datetime import datetime
 import variables as var
 
 """
@@ -15,37 +14,25 @@ def validateInput(input, list):
 
 
 """
-    Convert minutes into hours
+    Convert time to 24:00 if it is 00:00.
+    @param time: The time to be converted.
+    @return: The converted time.
 """
-def convertMinutesToHours(minutes):
-    return minutes / 60
+def convertTo24(time):
+    if time == '00:00':
+        return '24:00'
+
 
 """
-    Search for what time rate the employee is working.
-    @param employeeTimeRate: The employee's time rate.
-    @return: True if the time rate is valid, False otherwise.
+    Convert the time in string format into a time difference in hours considering the minutes.
+    @param time1: The first time.
+    @param time2: The second time.
+    @return: The time difference in hours.
 """
-def validateTimeRate(day,employeeTimeRate):
-    employeeTimeRate = employeeTimeRate.split("-")
-    #convert string into time format
-    time1 = datetime.strptime(employeeTimeRate[0], '%H:%M') #start time
-    minute1 = convertMinutesToHours(time1.minute)
-    time2 = datetime.strptime(employeeTimeRate[1], '%H:%M') #end time
-    minute2 = convertMinutesToHours(time2.minute)
-    #print(time1.time(), time2.time()) #debugging
-    if day == "MO" or day == "TU" or day == "WE" or day == "TH" or day == "FR":
-        if time1.time() < time2.time(): #validate if working time is correctly established
-            if time1.time() >= datetime.strptime('00:01', '%H:%M').time() and time2.time() <= datetime.strptime('09:00', '%H:%M').time():
-                return var.payment[0][0] * ((time2.hour - time1.hour) + minute2 - minute1)
-            elif time1.time() >= datetime.strptime('09:01', '%H:%M').time() and time2.time() <= datetime.strptime('18:00', '%H:%M').time():
-                return var.payment[1][0] * ((time2.hour - time1.hour) + minute2 - minute1)
-            elif time1.time() >= datetime.strptime('18:01', '%H:%M').time() and time2.time() >= datetime.strptime('00:00', '%H:%M').time():
-                return var.payment[2][0] * ((time2.hour - time1.hour) + minute2 - minute1)
-    elif day == "SA" or day == "SU":
-        if time1.time() < time2.time(): #validate if working time is correctly established
-            if time1.time() >= datetime.strptime('00:01', '%H:%M').time() and time2.time() <= datetime.strptime('09:00', '%H:%M').time():
-                return var.payment[0][1] * ((time2.hour - time1.hour) + minute2 - minute1)
-            elif time1.time() >= datetime.strptime('09:01', '%H:%M').time() and time2.time() <= datetime.strptime('18:00', '%H:%M').time():
-                return var.payment[1][1] * ((time2.hour - time1.hour) + minute2 - minute1)
-            elif time1.time() >= datetime.strptime('18:01', '%H:%M').time() and time2.time() >= datetime.strptime('00:00', '%H:%M').time():
-                return var.payment[2][1] * ((time2.hour - time1.hour) + minute2 - minute1)
+def converToHours(time1, time2):
+    hour1 = int(time1.split(':')[0]) + (float(time1.split(':')[1]) / 60)
+    hour2 = int(time2.split(':')[0]) + (float(time2.split(':')[1]) / 60)
+    differenceHour = hour2 - hour1
+    if differenceHour == 0:
+        differenceHour = 1/60
+    return differenceHour

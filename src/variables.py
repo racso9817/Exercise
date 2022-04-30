@@ -21,6 +21,9 @@ payment = [
     [20, 25]  #18:01-00:00
 ]
 
+#list of time rates
+time_rate = [('00:01','09:00'), ('09:01','18:00'), ('18:01','24:00')]
+
 info_dict = {} #empty dictionary for information gathered from the info.txt file
 lista = [] #empty list for the lines of the info.txt file
 employee_names = [] #empty list for the names of the employees
